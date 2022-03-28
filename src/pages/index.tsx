@@ -1,20 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import MovieDisplay from '../components/MovieDisplay';
 import styles from '../styles/Home.module.css'
+import { IMovieItens } from '../types/types';
+import {API_KEY} from '../utils/api';
 
 interface Props {
-  results: Array<{
-    id: number;
-    title: string;
-    original_language: string;
-    poster_path: string;
-    release_date: string;
-    vote_average: number;
-    media_type: string;
-    backdrop_path: string;
-    genre_ids: Array<number>;
-    overview: string;
-}>;
+  results: Array<IMovieItens>;
 }
 
 const Home = ({ results }:Props) => {
@@ -27,37 +18,24 @@ const Home = ({ results }:Props) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className={styles.title}><a href="">Next Movies TS</a></h1>
 
         <p className={styles.description}>
           Mais Populares da semana:{' '}
         </p>
 
         <div className={styles.grid}>
-          {results?.map((movie) => (<li key={movie.id}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} width={200} height={300} />
-            <h3>Titulo: {movie.title}</h3>
-            <p>Lançamento: {movie.release_date}</p>
-            <p>Nota do publico: {movie.vote_average}</p>
-          </li>))}
+          {results?.map((movie) => (
+            <div className={styles.card} key={movie.id}>
+              <MovieDisplay
+                imgURL={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                title={movie.name  ?? movie.original_title ?? movie.title ?? movie.original_name}
+                release_date={movie.release_date ?? movie.first_air_date}
+                vote_average={movie.vote_average}
+              />
+            </div>))}
         </div>
-
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }
@@ -66,6 +44,7 @@ export default Home;
 
 
 export async function getStaticProps() {
+  console.log(API_KEY)
   const res = await fetch('http://localhost:3000/api/tmdb/weked');
   const data = await res.json();
   return {

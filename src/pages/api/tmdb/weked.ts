@@ -13,7 +13,7 @@ type Error = { message: string };
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | Error>) {
   if (req.method === 'GET') {
     const getResults = async () => {
-      const response = await fetch(API_END_POINT.weak);
+      const response = await fetch(API_END_POINT.must_popularity);
       return response.json();
     }
     
