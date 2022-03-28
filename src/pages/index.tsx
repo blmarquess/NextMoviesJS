@@ -2,7 +2,7 @@ import Head from 'next/head'
 import MovieDisplay from '../components/MovieDisplay';
 import styles from '../styles/Home.module.css'
 import { IMovieItens } from '../types/types';
-import {API_KEY} from '../utils/api';
+import { API_END_POINT } from '../utils/api';
 
 interface Props {
   results: Array<IMovieItens>;
@@ -42,11 +42,9 @@ const Home = ({ results }:Props) => {
 
 export default Home;
 
-
 export async function getStaticProps() {
-  console.log(API_KEY)
-  const res = await fetch('http://localhost:3000/api/tmdb/weked');
-  const data = await res.json();
+  const response = await fetch(API_END_POINT.must_popularity);
+  const data = await response.json();
   return {
     props: {
       results: data.results
