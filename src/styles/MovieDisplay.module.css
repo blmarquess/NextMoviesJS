@@ -24,16 +24,16 @@
 
 .card:hover h1 {
   transition: all 0.5s ease-in-out;
-  text-shadow: 0px 0px 96px 76px rgba(253, 253, 253, 0.611);
+  text-shadow: 16px 16px 16px 16px rgba(253, 253, 253, 0.255);
   font-weight: 800;
-  filter:  invert(100%) brightness(23%);
+  /* filter:  invert(100%) brightness(23%); */
 }
 
 .card:hover p {
   transition: all 0.6s ease-in-out;
   text-shadow: 0px 0px 96px 76px rgba(253, 253, 253, 0.611);
   font-weight: 800;
-  filter:  invert(100%) brightness(23%);
+  filter:  invert(100%) brightness(23%) drop-shadow(9px 9px 9px rgb(255, 254, 254)) ;
 }
 
 .title {
@@ -50,15 +50,15 @@
 }
 
 .title:hover {
-  color: rgb(0, 0, 0);
+  color: black;
   transition: all 0.2s ease-in-out;
   text-shadow: 0px 0px 96px 76px rgb(255, 255, 255);
-  box-shadow: 0px 0px 46px 36px rgb(255, 255, 255);
+  box-shadow: 0px 0px 36px 36px rgb(255, 255, 255);
   font-weight: 900;
   cursor: pointer;
   transition: all 0.45s ease-in-out;
-  filter: drop-shadow(16px 16px 20px black) invert(95%);
-  background-color: rgba(255, 255, 255, 0.741);
+  filter: drop-shadow(9px 9px 9px red)  invert(100%) brightness(103%);
+  background-color: rgba(255, 255, 255, 0.926);
 }
 
 .subtitle {
